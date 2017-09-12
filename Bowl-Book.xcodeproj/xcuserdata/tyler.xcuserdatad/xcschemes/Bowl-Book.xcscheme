@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2F7BA2051F62FCA70015CA34"
+               BuildableName = "Bowl-Book.app"
+               BlueprintName = "Bowl-Book"
+               ReferencedContainer = "container:Bowl-Book.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2F7BA2191F62FCA70015CA34"
+               BuildableName = "Bowl-BookTests.xctest"
+               BlueprintName = "Bowl-BookTests"
+               ReferencedContainer = "container:Bowl-Book.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2F7BA2241F62FCA70015CA34"
+               BuildableName = "Bowl-BookUITests.xctest"
+               BlueprintName = "Bowl-BookUITests"
+               ReferencedContainer = "container:Bowl-Book.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2F7BA2051F62FCA70015CA34"
+            BuildableName = "Bowl-Book.app"
+            BlueprintName = "Bowl-Book"
+            ReferencedContainer = "container:Bowl-Book.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2F7BA2051F62FCA70015CA34"
+            BuildableName = "Bowl-Book.app"
+            BlueprintName = "Bowl-Book"
+            ReferencedContainer = "container:Bowl-Book.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2F7BA2051F62FCA70015CA34"
+            BuildableName = "Bowl-Book.app"
+            BlueprintName = "Bowl-Book"
+            ReferencedContainer = "container:Bowl-Book.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

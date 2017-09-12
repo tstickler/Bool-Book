@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2F7BA20A1F62FCA70015CA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA2091F62FCA70015CA34 /* AppDelegate.swift */; };
-		2F7BA20C1F62FCA70015CA34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA20B1F62FCA70015CA34 /* ViewController.swift */; };
+		2F7BA20C1F62FCA70015CA34 /* titleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA20B1F62FCA70015CA34 /* titleViewController.swift */; };
 		2F7BA20F1F62FCA70015CA34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BA20D1F62FCA70015CA34 /* Main.storyboard */; };
 		2F7BA2111F62FCA70015CA34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BA2101F62FCA70015CA34 /* Assets.xcassets */; };
 		2F7BA2141F62FCA70015CA34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BA2121F62FCA70015CA34 /* LaunchScreen.storyboard */; };
 		2F7BA21F1F62FCA70015CA34 /* Bowl_BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA21E1F62FCA70015CA34 /* Bowl_BookTests.swift */; };
 		2F7BA22A1F62FCA70015CA34 /* Bowl_BookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA2291F62FCA70015CA34 /* Bowl_BookUITests.swift */; };
+		2F7BA2381F62FD860015CA34 /* gameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA2371F62FD860015CA34 /* gameViewController.swift */; };
+		2F7BA23A1F6302720015CA34 /* frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA2391F6302720015CA34 /* frame.swift */; };
+		2F7BA23C1F6303120015CA34 /* game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA23B1F6303120015CA34 /* game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		2F7BA2061F62FCA70015CA34 /* Bowl-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bowl-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7BA2091F62FCA70015CA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2F7BA20B1F62FCA70015CA34 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2F7BA20B1F62FCA70015CA34 /* titleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleViewController.swift; sourceTree = "<group>"; };
 		2F7BA20E1F62FCA70015CA34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F7BA2101F62FCA70015CA34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F7BA2131F62FCA70015CA34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,9 @@
 		2F7BA2251F62FCA70015CA34 /* Bowl-BookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bowl-BookUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7BA2291F62FCA70015CA34 /* Bowl_BookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bowl_BookUITests.swift; sourceTree = "<group>"; };
 		2F7BA22B1F62FCA70015CA34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F7BA2371F62FD860015CA34 /* gameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameViewController.swift; sourceTree = "<group>"; };
+		2F7BA2391F6302720015CA34 /* frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = frame.swift; sourceTree = "<group>"; };
+		2F7BA23B1F6303120015CA34 /* game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				2F7BA2091F62FCA70015CA34 /* AppDelegate.swift */,
-				2F7BA20B1F62FCA70015CA34 /* ViewController.swift */,
+				2F7BA20B1F62FCA70015CA34 /* titleViewController.swift */,
+				2F7BA2371F62FD860015CA34 /* gameViewController.swift */,
+				2F7BA2391F6302720015CA34 /* frame.swift */,
+				2F7BA23B1F6303120015CA34 /* game.swift */,
 				2F7BA20D1F62FCA70015CA34 /* Main.storyboard */,
 				2F7BA2101F62FCA70015CA34 /* Assets.xcassets */,
 				2F7BA2121F62FCA70015CA34 /* LaunchScreen.storyboard */,
@@ -262,7 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F7BA20C1F62FCA70015CA34 /* ViewController.swift in Sources */,
+				2F7BA2381F62FD860015CA34 /* gameViewController.swift in Sources */,
+				2F7BA23A1F6302720015CA34 /* frame.swift in Sources */,
+				2F7BA23C1F6303120015CA34 /* game.swift in Sources */,
+				2F7BA20C1F62FCA70015CA34 /* titleViewController.swift in Sources */,
 				2F7BA20A1F62FCA70015CA34 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
