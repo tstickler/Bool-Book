@@ -11,6 +11,7 @@ import UIKit
 class gameViewController: UIViewController {
     var newGame: game!
     var currentBall: Int!
+    var labels = [UILabel]()
     
     /* Variables to refer to score labels */
     @IBOutlet weak var scoreLabel: UILabel!
@@ -43,6 +44,9 @@ class gameViewController: UIViewController {
         scoreLabel.text = "0"
         
         buttonsVisible(startIndex: 0, visible: true)
+        for i in 0...20 {
+            labels[i].text = ""
+        }
     }
     
     @IBAction func foulButtonTapped(_ sender: UIButton) {
@@ -201,7 +205,7 @@ class gameViewController: UIViewController {
         let currentFrame = newGame.currentFrame
         let startRange = 11 - score
 
-        if ball == 1 {
+        if ball == 1 || score == 0 {
             buttonsVisible(startIndex: 0, visible: true)
         }
         else if ball == 2 && newGame.frames[currentFrame].ballOne != 10 {
@@ -220,7 +224,7 @@ class gameViewController: UIViewController {
     }
     
     func buttonsVisible(startIndex: Int, visible: Bool) {
-        for i in startIndex...12 {
+        for i in startIndex...10 {
             if let button = view.viewWithTag(i) as? UIButton {
                 button.isEnabled = visible
             }
@@ -323,5 +327,16 @@ class gameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonsVisible(startIndex: 0, visible: false)
+        
+        labels =     [f1b1Label, f1b2Label,
+                      f2b1Label, f2b2Label,
+                      f3b1Label, f3b2Label,
+                      f4b1Label, f4b2Label,
+                      f5b1Label, f5b2Label,
+                      f6b1Label, f6b2Label,
+                      f7b1Label, f7b2Label,
+                      f8b1Label, f8b2Label,
+                      f9b1Label, f9b2Label,
+                      f10b1Label, f10b2Label, f10b3Label]
     }
 }

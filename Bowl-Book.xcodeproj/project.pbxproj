@@ -17,6 +17,8 @@
 		2F7BA2381F62FD860015CA34 /* gameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA2371F62FD860015CA34 /* gameViewController.swift */; };
 		2F7BA23A1F6302720015CA34 /* frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA2391F6302720015CA34 /* frame.swift */; };
 		2F7BA23C1F6303120015CA34 /* game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA23B1F6303120015CA34 /* game.swift */; };
+		2FC8D0B21F6B54B3004B7227 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8D0B11F6B54B3004B7227 /* SegueFromLeft.swift */; };
+		2FC8D0B41F6B5589004B7227 /* SegueFromRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8D0B31F6B5589004B7227 /* SegueFromRight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		2F7BA2371F62FD860015CA34 /* gameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameViewController.swift; sourceTree = "<group>"; };
 		2F7BA2391F6302720015CA34 /* frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = frame.swift; sourceTree = "<group>"; };
 		2F7BA23B1F6303120015CA34 /* game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = game.swift; sourceTree = "<group>"; };
+		2FC8D0B11F6B54B3004B7227 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		2FC8D0B31F6B5589004B7227 /* SegueFromRight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromRight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				2F7BA2091F62FCA70015CA34 /* AppDelegate.swift */,
 				2F7BA20B1F62FCA70015CA34 /* titleViewController.swift */,
 				2F7BA2371F62FD860015CA34 /* gameViewController.swift */,
+				2FC8D0B11F6B54B3004B7227 /* SegueFromLeft.swift */,
+				2FC8D0B31F6B5589004B7227 /* SegueFromRight.swift */,
 				2F7BA2391F6302720015CA34 /* frame.swift */,
 				2F7BA23B1F6303120015CA34 /* game.swift */,
 				2F7BA20D1F62FCA70015CA34 /* Main.storyboard */,
@@ -271,9 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FC8D0B21F6B54B3004B7227 /* SegueFromLeft.swift in Sources */,
 				2F7BA2381F62FD860015CA34 /* gameViewController.swift in Sources */,
 				2F7BA23A1F6302720015CA34 /* frame.swift in Sources */,
 				2F7BA23C1F6303120015CA34 /* game.swift in Sources */,
+				2FC8D0B41F6B5589004B7227 /* SegueFromRight.swift in Sources */,
 				2F7BA20C1F62FCA70015CA34 /* titleViewController.swift in Sources */,
 				2F7BA20A1F62FCA70015CA34 /* AppDelegate.swift in Sources */,
 			);
@@ -528,6 +536,7 @@
 				2F7BA2301F62FCA70015CA34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F7BA2311F62FCA70015CA34 /* Build configuration list for PBXNativeTarget "Bowl-BookTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +545,7 @@
 				2F7BA2331F62FCA70015CA34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F7BA2341F62FCA70015CA34 /* Build configuration list for PBXNativeTarget "Bowl-BookUITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +554,7 @@
 				2F7BA2361F62FCA70015CA34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
