@@ -28,12 +28,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOr-5n-GWp">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKX-kg-x4J">
+                                <rect key="frame" x="136" y="318" width="102" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Manage Series"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGL-F4-gE6">
+                                <rect key="frame" x="138" y="413" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Your Statistics"/>
                                 <connections>
-                                    <segue destination="rex-j5-mFL" kind="show" customClass="SegueFromRight" customModule="Bowl_Book" customModuleProvider="target" id="Ua2-YA-cH8"/>
+                                    <segue destination="rex-j5-mFL" kind="custom" customClass="SegueFromRight" customModule="Bowl_Book" customModuleProvider="target" id="sPT-6R-ecQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -65,9 +70,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="↩︎"/>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" customClass="SegueFromLeft" customModule="Bowl_Book" customModuleProvider="target" id="CeG-zb-Ozu"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-vQ-qV4">
                                         <rect key="frame" x="332" y="24" width="35" height="32"/>
@@ -81,20 +83,20 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSD-Dd-JYM">
+                                <rect key="frame" x="165" y="508" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="-"/>
+                                <connections>
+                                    <action selector="zeroButtonTapped:" destination="rex-j5-mFL" eventType="touchUpInside" id="GlY-cw-0LL"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldv-FC-FRc">
                                 <rect key="frame" x="90" y="318" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="1"/>
                                 <connections>
                                     <action selector="oneButtonTapped:" destination="rex-j5-mFL" eventType="touchUpInside" id="0dr-EU-P9i"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pZ-NJ-8DX">
-                                <rect key="frame" x="172" y="318" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="2"/>
-                                <connections>
-                                    <action selector="twoButtonTapped:" destination="rex-j5-mFL" eventType="touchUpInside" id="Hif-ac-RiN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ea2-0v-I84">
@@ -161,7 +163,7 @@
                                     <action selector="strikeButtonTapped:" destination="rex-j5-mFL" eventType="touchUpInside" id="TgA-lP-rZX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1g-nv-NAO">
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1g-nv-NAO">
                                 <rect key="frame" x="259" y="508" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="F"/>
@@ -370,10 +372,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pZ-NJ-8DX">
+                                <rect key="frame" x="172" y="318" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="2"/>
+                                <connections>
+                                    <action selector="twoButtonTapped:" destination="rex-j5-mFL" eventType="touchUpInside" id="Hif-ac-RiN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="eightBtn" destination="sZZ-st-4xZ" id="ui6-Pr-lgP"/>
                         <outlet property="f10b1Label" destination="Zri-3f-dTh" id="Pd1-kX-dPd"/>
                         <outlet property="f10b2Label" destination="b5G-NW-jZh" id="Jiy-uK-uqO"/>
                         <outlet property="f10b3Label" destination="h96-qI-aj7" id="Aft-xG-etC"/>
@@ -395,12 +406,23 @@
                         <outlet property="f8b2Label" destination="bm7-Qj-Dme" id="Mnw-B8-iyE"/>
                         <outlet property="f9b1Label" destination="jXX-UU-uas" id="Fe9-oO-yOT"/>
                         <outlet property="f9b2Label" destination="xHs-Bw-TqF" id="dnC-Tx-EZh"/>
+                        <outlet property="fiveBtn" destination="s4j-kR-Suq" id="SL2-BQ-jnz"/>
+                        <outlet property="foulBtn" destination="c1g-nv-NAO" id="2Ob-eF-asN"/>
+                        <outlet property="fourBtn" destination="2ae-ES-rEU" id="dn7-ZD-37e"/>
+                        <outlet property="nineBtn" destination="D4k-bK-r5W" id="Xsy-wQ-3YI"/>
+                        <outlet property="oneBtn" destination="ldv-FC-FRc" id="Z8d-Ic-zVR"/>
                         <outlet property="scoreLabel" destination="jNX-Cv-vwW" id="hEr-PN-01e"/>
+                        <outlet property="sevenBtn" destination="j09-UA-MpA" id="ztO-vY-dXp"/>
+                        <outlet property="sixBtn" destination="LUN-sy-U3F" id="VIL-Ca-I2F"/>
+                        <outlet property="strikeBtn" destination="3wr-Na-sRD" id="0hL-ls-HYQ"/>
+                        <outlet property="threeBtn" destination="ea2-0v-I84" id="65N-om-akO"/>
+                        <outlet property="twoBtn" destination="5pZ-NJ-8DX" id="LmO-di-mVg"/>
+                        <outlet property="zeroBtn" destination="qSD-Dd-JYM" id="Rgq-4N-1We"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dYE-UK-NrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="968.79999999999995" y="123.68815592203899"/>
+            <point key="canvasLocation" x="1218" y="131"/>
         </scene>
     </scenes>
     <resources>

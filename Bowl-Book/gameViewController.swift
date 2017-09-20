@@ -12,6 +12,8 @@ class gameViewController: UIViewController {
     var newGame: game!
     var currentBall: Int!
     var labels = [UILabel]()
+    var buttons = [UIButton]()
+    var lastButtonPress: Int!
     
     /* Variables to refer to score labels */
     @IBOutlet weak var scoreLabel: UILabel!
@@ -36,6 +38,21 @@ class gameViewController: UIViewController {
     @IBOutlet weak var f10b1Label: UILabel!
     @IBOutlet weak var f10b2Label: UILabel!
     @IBOutlet weak var f10b3Label: UILabel!
+    
+    /* Variables to refer to buttons */
+    @IBOutlet weak var zeroBtn: UIButton!
+    @IBOutlet weak var oneBtn: UIButton!
+    @IBOutlet weak var twoBtn: UIButton!
+    @IBOutlet weak var threeBtn: UIButton!
+    @IBOutlet weak var fourBtn: UIButton!
+    @IBOutlet weak var fiveBtn: UIButton!
+    @IBOutlet weak var sixBtn: UIButton!
+    @IBOutlet weak var sevenBtn: UIButton!
+    @IBOutlet weak var eightBtn: UIButton!
+    @IBOutlet weak var nineBtn: UIButton!
+    @IBOutlet weak var strikeBtn: UIButton!
+    @IBOutlet weak var foulBtn: UIButton!
+    
 
     /* Handles the new game button being tapped */
     @IBAction func newGameStart(_ sender: Any) {
@@ -43,21 +60,35 @@ class gameViewController: UIViewController {
         currentBall = 1
         scoreLabel.text = "0"
         
-        buttonsVisible(startIndex: 0, visible: true)
+        buttonsEnabled(startIndex: -1, enabled: true)
+        buttonsHidden(hidden: false)
         for i in 0...20 {
             labels[i].text = ""
         }
     }
     
     @IBAction func foulButtonTapped(_ sender: UIButton) {
+        // lastButtonPress variable is only used to differentiate between
+        // a 0 roll and a foul for labeling purpose
+        lastButtonPress = foulBtn.tag
         addRollToGame(score: 0, ball: currentBall)
     }
+    
+    @IBAction func zeroButtonTapped(_ sender: UIButton) {
+        // lastButtonPress variable is only used to differentiate between
+        // a 0 roll and a foul for labeling purpose
+        lastButtonPress = zeroBtn.tag
+        addRollToGame(score: 0, ball: currentBall)
+    }
+    
     @IBAction func oneButtonTapped(_ sender: UIButton) {
         addRollToGame(score: 1, ball: currentBall)
     }
+    
     @IBAction func twoButtonTapped(_ sender: UIButton) {
         addRollToGame(score: 2, ball: currentBall)
     }
+    
     @IBAction func threeButtonTapped(_ sender: UIButton) {
         addRollToGame(score: 3, ball: currentBall)
     }
@@ -90,6 +121,7 @@ class gameViewController: UIViewController {
         addRollToGame(score: 10, ball: currentBall)
     }
     
+    /* Based on the button pressed, add the input to the game */
     func addRollToGame(score: Int, ball: Int) {
         let currFrame = newGame.currentFrame
         updatePreviousFrames(score: score, ball: ball)
@@ -144,16 +176,20 @@ class gameViewController: UIViewController {
         default:
             break
         }
+        // Enables/disables buttons based on current score and ball
         manageButtons(score: score, ball: currentBall)
 
-        // Breaks the app when game is over
+        // Updates the total score
+        scoreLabel.text = String(newGame.calculateTotal())
+        
+        // Handles the game ending
         if newGame.gameOver {
-            buttonsVisible(startIndex: 0, visible: false)
+            gameOver()
         }
         
-        scoreLabel.text = String(newGame.calculateTotal())
     }
     
+    /* Previous frames must be update if they were strikes or spares */
     func updatePreviousFrames(score: Int, ball: Int) {
         let previousFrame = newGame.currentFrame - 1
         
@@ -201,50 +237,78 @@ class gameViewController: UIViewController {
         }
     }
     
+    /* Manages if buttons able to be tapped or not */
     func manageButtons(score: Int, ball: Int) {
         let currentFrame = newGame.currentFrame
+        
+        // This is used to determine what index to start disabling buttons.
+        // EX. User gets a 3, 11 - 3 is 8 so we disable 8, 9, X buttons for
+        // second ball.
         let startRange = 11 - score
 
+        // Ball one should show all buttons
         if ball == 1 || score == 0 {
-            buttonsVisible(startIndex: 0, visible: true)
+            buttonsEnabled(startIndex: -1, enabled: true)
         }
+        // Ball two should hide buttons based on ball one roll
         else if ball == 2 && newGame.frames[currentFrame].ballOne != 10 {
-            buttonsVisible(startIndex: startRange, visible: false)
+            buttonsEnabled(startIndex: startRange, enabled: false)
         }
+        // Ball three only occurs in 10th frame
         else if ball == 3 {
+            // If user got a X on the first ball and a non-X on second ball, hide buttons based on secore
             if newGame.frames[currentFrame].ballOne == 10 && newGame.frames[currentFrame].ballTwo != 10 {
-                buttonsVisible(startIndex: startRange, visible: false)
-
+                buttonsEnabled(startIndex: startRange, enabled: false)
             }
+            // If the user got a / at the beginning of the tenth, then all buttons should be enabled
             else if newGame.frames[currentFrame].isSpare {
-                buttonsVisible(startIndex: 0, visible: true)
-
+                buttonsEnabled(startIndex: -1, enabled: true)
             }
         }
     }
     
-    func buttonsVisible(startIndex: Int, visible: Bool) {
-        for i in startIndex...10 {
-            if let button = view.viewWithTag(i) as? UIButton {
-                button.isEnabled = visible
-            }
+    /* Iterates through button array to enable/disable specific buttons */
+    func buttonsEnabled(startIndex: Int, enabled: Bool) {
+        
+        // We need to always start at index 2 so foul and zero button are always available.
+        let begin = startIndex + 1
+        
+        for i in begin...11 {
+            buttons[i].isEnabled = enabled
         }
     }
     
+    /* Iterates through the buttons array and hides buttons */
+    func buttonsHidden(hidden: Bool) {
+        for i in 0...11 {
+            buttons[i].isHidden = hidden
+        }
+    }
+    
+    /* Handles updating the labels to display the user score */
     func updateFrameLabel(score: Int, ball: Int) {
         let currentFrame = newGame.currentFrame
         var stringScore = String(score)
         
+        // If the user got a 10, mark as an X
         if stringScore == "10" {
             stringScore = "X"
         }
+        // If the user got a 0, mark as a -
         else if stringScore == "0" {
-            stringScore = "-"
+            if lastButtonPress == -1 {
+                stringScore = "F"
+            }
+            else {
+                stringScore = "-"
+            }
         }
+        // If ball one and ball two add to 10, mark as a /
         else if ball == 2 && score + newGame.frames[currentFrame].ballOne == 10 {
             stringScore = "/"
         }
         
+        // Modifies the label based on the score the user has input
         switch currentFrame {
         case 0:
             if ball == 1 {
@@ -323,20 +387,40 @@ class gameViewController: UIViewController {
             break
         }
     }
+    
+    /* Handles the game ending */
+    func gameOver() {
+        buttonsHidden(hidden: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonsVisible(startIndex: 0, visible: false)
         
-        labels =     [f1b1Label, f1b2Label,
-                      f2b1Label, f2b2Label,
-                      f3b1Label, f3b2Label,
-                      f4b1Label, f4b2Label,
-                      f5b1Label, f5b2Label,
-                      f6b1Label, f6b2Label,
-                      f7b1Label, f7b2Label,
-                      f8b1Label, f8b2Label,
-                      f9b1Label, f9b2Label,
-                      f10b1Label, f10b2Label, f10b3Label]
+        // Puts our score labels into an array so as the game goes on
+        // we can keep track of what label to update
+        labels = [f1b1Label, f1b2Label,
+                  f2b1Label, f2b2Label,
+                  f3b1Label, f3b2Label,
+                  f4b1Label, f4b2Label,
+                  f5b1Label, f5b2Label,
+                  f6b1Label, f6b2Label,
+                  f7b1Label, f7b2Label,
+                  f8b1Label, f8b2Label,
+                  f9b1Label, f9b2Label,
+                  f10b1Label, f10b2Label, f10b3Label]
+        
+        // Puts our buttons into an array so we can enable/disable them
+        // to only allow proper score entry ie no score > 10 per frame
+        buttons = [foulBtn, zeroBtn,
+                   oneBtn, twoBtn,
+                   threeBtn, fourBtn,
+                   fiveBtn, sixBtn,
+                   sevenBtn, eightBtn,
+                   nineBtn, strikeBtn]
+        
+        // Sets all buttons to initially be disabled. Clicking the start
+        // button will enable the buttons.
+        buttonsEnabled(startIndex: -1, enabled: false)
+
     }
 }
