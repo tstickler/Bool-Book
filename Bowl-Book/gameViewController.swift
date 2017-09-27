@@ -136,6 +136,10 @@ class gameViewController: UIViewController {
             // If we didn't get a strike OR we're in the final frame go to the next ball
             if score != 10 || currFrame == 9 {
                 currentBall = 2
+                
+                if score == 10 {
+                    newGame.frames[currFrame].isStrike = true
+                }
             }
             else {
                 // If we got a strike, go to the next frame
@@ -186,7 +190,6 @@ class gameViewController: UIViewController {
         if newGame.gameOver {
             gameOver()
         }
-        
     }
     
     /* Previous frames must be update if they were strikes or spares */
@@ -290,22 +293,62 @@ class gameViewController: UIViewController {
         let currentFrame = newGame.currentFrame
         var stringScore = String(score)
         
-        // If the user got a 10, mark as an X
-        if stringScore == "10" {
-            stringScore = "X"
+        /* Handling for proper labeling of X or / */
+        if currentFrame < 9 {
+            // If the user got a 10, mark as an X
+            if stringScore == "10" && ball == 1{
+                stringScore = "X"
+            }
+                
+            // If ball one and ball two add to 10, mark as a /
+            else if ball == 2 && score + newGame.frames[currentFrame].ballOne == 10 {
+                stringScore = "/"
+            }
         }
+        else {
+            switch ball {
+            case 1:
+                if stringScore == "10" {
+                    stringScore = "X"
+                }
+            case 2:
+                if newGame.frames[currentFrame].ballOne == 10 {
+                    if stringScore == "10" {
+                        stringScore = "X"
+                    }
+                }
+                else if score + newGame.frames[currentFrame].ballOne == 10 {
+                    stringScore = "/"
+                }
+            case 3:
+                if newGame.frames[currentFrame].isStrike {
+                    if newGame.frames[currentFrame].ballTwo != 10 {
+                        if score + newGame.frames[currentFrame].ballTwo! == 10 {
+                            stringScore = "/"
+                        }
+                    }
+                    else if stringScore == "10" {
+                        stringScore = "X"
+                    }
+                }
+                else if newGame.frames[currentFrame].isSpare {
+                    if stringScore == "10" {
+                        stringScore = "X"
+                    }
+                }
+            default:
+                break
+            }
+        }
+        
         // If the user got a 0, mark as a -
-        else if stringScore == "0" {
+        if stringScore == "0" {
             if lastButtonPress == -1 {
                 stringScore = "F"
             }
             else {
                 stringScore = "-"
             }
-        }
-        // If ball one and ball two add to 10, mark as a /
-        else if ball == 2 && score + newGame.frames[currentFrame].ballOne == 10 {
-            stringScore = "/"
         }
         
         // Modifies the label based on the score the user has input
@@ -411,12 +454,10 @@ class gameViewController: UIViewController {
         
         // Puts our buttons into an array so we can enable/disable them
         // to only allow proper score entry ie no score > 10 per frame
-        buttons = [foulBtn, zeroBtn,
-                   oneBtn, twoBtn,
-                   threeBtn, fourBtn,
-                   fiveBtn, sixBtn,
-                   sevenBtn, eightBtn,
-                   nineBtn, strikeBtn]
+        buttons = [foulBtn, zeroBtn, oneBtn,
+                   twoBtn, threeBtn, fourBtn,
+                   fiveBtn, sixBtn, sevenBtn,
+                   eightBtn, nineBtn, strikeBtn]
         
         // Sets all buttons to initially be disabled. Clicking the start
         // button will enable the buttons.

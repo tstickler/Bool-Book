@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F026F1E1F7C1D8A00A2DF60 /* gameTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F026F1D1F7C1D8A00A2DF60 /* gameTableView.swift */; };
 		2F7BA20A1F62FCA70015CA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA2091F62FCA70015CA34 /* AppDelegate.swift */; };
 		2F7BA20C1F62FCA70015CA34 /* titleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BA20B1F62FCA70015CA34 /* titleViewController.swift */; };
 		2F7BA20F1F62FCA70015CA34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BA20D1F62FCA70015CA34 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F026F1D1F7C1D8A00A2DF60 /* gameTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameTableView.swift; sourceTree = "<group>"; };
 		2F7BA2061F62FCA70015CA34 /* Bowl-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bowl-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7BA2091F62FCA70015CA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F7BA20B1F62FCA70015CA34 /* titleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			children = (
 				2F7BA2091F62FCA70015CA34 /* AppDelegate.swift */,
 				2F7BA20B1F62FCA70015CA34 /* titleViewController.swift */,
+				2F026F1D1F7C1D8A00A2DF60 /* gameTableView.swift */,
 				2F7BA2371F62FD860015CA34 /* gameViewController.swift */,
 				2FC8D0B11F6B54B3004B7227 /* SegueFromLeft.swift */,
 				2FC8D0B31F6B5589004B7227 /* SegueFromRight.swift */,
@@ -280,6 +283,7 @@
 				2FC8D0B21F6B54B3004B7227 /* SegueFromLeft.swift in Sources */,
 				2F7BA2381F62FD860015CA34 /* gameViewController.swift in Sources */,
 				2F7BA23A1F6302720015CA34 /* frame.swift in Sources */,
+				2F026F1E1F7C1D8A00A2DF60 /* gameTableView.swift in Sources */,
 				2F7BA23C1F6303120015CA34 /* game.swift in Sources */,
 				2FC8D0B41F6B5589004B7227 /* SegueFromRight.swift in Sources */,
 				2F7BA20C1F62FCA70015CA34 /* titleViewController.swift in Sources */,
