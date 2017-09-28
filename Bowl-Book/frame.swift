@@ -15,11 +15,13 @@ class frame {
     var frameTotal: Int
     var isStrike: Bool
     var isSpare: Bool
+    var doneUpdating: Bool
     
     
     init(){
         isStrike = false
         isSpare = false
+        doneUpdating = false
         frameTotal = 0
     }
 }

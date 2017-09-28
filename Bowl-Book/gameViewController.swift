@@ -13,7 +13,9 @@ class gameViewController: UIViewController {
     var currentBall: Int!
     var labels = [UILabel]()
     var buttons = [UIButton]()
+    var frameScoreLabels = [UILabel]()
     var lastButtonPress: Int!
+    var sum: Int = 0
     
     /* Variables to refer to score labels */
     @IBOutlet weak var scoreLabel: UILabel!
@@ -53,17 +55,34 @@ class gameViewController: UIViewController {
     @IBOutlet weak var strikeBtn: UIButton!
     @IBOutlet weak var foulBtn: UIButton!
     
+    /* Variables for individual frame scores */
+    @IBOutlet weak var f1Score: UILabel!
+    @IBOutlet weak var f2Score: UILabel!
+    @IBOutlet weak var f3Score: UILabel!
+    @IBOutlet weak var f4Score: UILabel!
+    @IBOutlet weak var f5Score: UILabel!
+    @IBOutlet weak var f6Score: UILabel!
+    @IBOutlet weak var f7Score: UILabel!
+    @IBOutlet weak var f8Score: UILabel!
+    @IBOutlet weak var f9Score: UILabel!
+    @IBOutlet weak var f10Score: UILabel!
+    
 
     /* Handles the new game button being tapped */
     @IBAction func newGameStart(_ sender: Any) {
         newGame = game.init()
         currentBall = 1
         scoreLabel.text = "0"
+        sum = 0
         
         buttonsEnabled(startIndex: -1, enabled: true)
         buttonsHidden(hidden: false)
         for i in 0...20 {
             labels[i].text = ""
+        }
+        
+        for j in 0...9 {
+            frameScoreLabels[j].text = ""
         }
     }
     
@@ -118,7 +137,15 @@ class gameViewController: UIViewController {
     }
 
     @IBAction func strikeButtonTapped(_ sender: UIButton) {
-        addRollToGame(score: 10, ball: currentBall)
+        if currentBall == 1 {
+            addRollToGame(score: 10, ball: currentBall)
+        }
+        else if currentBall == 2{
+            addRollToGame(score: 10 - newGame.frames[newGame.currentFrame].ballOne, ball: currentBall)
+        }
+        else if currentBall == 2{
+            addRollToGame(score: 10 - newGame.frames[newGame.currentFrame].ballTwo!, ball: currentBall)
+        }
     }
     
     /* Based on the button pressed, add the input to the game */
@@ -155,6 +182,12 @@ class gameViewController: UIViewController {
             if newGame.frames[currFrame].ballOne + score == 10 {
                 newGame.frames[currFrame].isSpare = true
             }
+            else {
+                if currFrame < 9 {
+                    newGame.frames[currFrame].doneUpdating = true
+                    frameScoreLabels[currFrame].text = String(newGame.calculateTotal())
+                }
+            }
             
             // If we aren't in the last frame switch back to ball 1 and go to the next frame
             if newGame.currentFrame != 9 {
@@ -168,6 +201,9 @@ class gameViewController: UIViewController {
                 currentBall = 3
             }
             else {
+                newGame.frames[currFrame].doneUpdating = true
+                frameScoreLabels[currFrame].text = String(newGame.calculateTotal())
+
                 newGame.gameOver = true
             }
         case 3:
@@ -176,6 +212,10 @@ class gameViewController: UIViewController {
             newGame.frames[currFrame].frameTotal += score
             
             // Indicate that the game has ended
+            
+            newGame.frames[currFrame].doneUpdating = true
+            frameScoreLabels[currFrame].text = String(newGame.calculateTotal())
+
             newGame.gameOver = true
         default:
             break
@@ -190,21 +230,31 @@ class gameViewController: UIViewController {
         if newGame.gameOver {
             gameOver()
         }
+        
     }
     
     /* Previous frames must be update if they were strikes or spares */
     func updatePreviousFrames(score: Int, ball: Int) {
         let previousFrame = newGame.currentFrame - 1
+        let currentFrameTotal = newGame.frames[newGame.currentFrame].frameTotal
         
         if newGame.currentFrame == 0 { /* Do nothing, no previous frame to update */ }
         else if newGame.currentFrame == 1 {
             // If we're in the second frame, check first frame for X
             if newGame.frames[previousFrame].isStrike {
                 newGame.frames[previousFrame].frameTotal += score
+                if ball == 2 {
+                    newGame.frames[previousFrame].doneUpdating = true
+                    frameScoreLabels[previousFrame].text = String(newGame.calculateTotal())
+
+                }
             }
             // If there was no strike and we're on the first ball, check for /
             else if newGame.frames[previousFrame].isSpare && ball == 1 {
                 newGame.frames[previousFrame].frameTotal += score
+                newGame.frames[previousFrame].doneUpdating = true
+                frameScoreLabels[previousFrame].text = String(newGame.calculateTotal())
+
             }
             else { /* Do nothing, no strike or spare means no frame to update */ }
         }
@@ -214,12 +264,22 @@ class gameViewController: UIViewController {
                 // If previous frame had a X and we're on ball 1, check for XX
                 if newGame.frames[previousFrame - 1].isStrike && ball == 1{
                     newGame.frames[previousFrame - 1].frameTotal += score
+                    newGame.frames[previousFrame - 1].doneUpdating = true
+                    frameScoreLabels[previousFrame - 1].text = String(newGame.calculateTotal() - currentFrameTotal - newGame.frames[previousFrame].frameTotal)
+
                 }
                 newGame.frames[previousFrame].frameTotal += score
+                if ball == 2 {
+                    newGame.frames[previousFrame].doneUpdating = true
+                    frameScoreLabels[previousFrame].text = String(newGame.calculateTotal() - currentFrameTotal)
+                }
             }
             else if newGame.frames[previousFrame].isSpare && ball == 1 {
                 // If there was no X and we're on the first ball, check for /
                 newGame.frames[previousFrame].frameTotal += score
+                newGame.frames[previousFrame].doneUpdating = true
+                frameScoreLabels[previousFrame].text = String(newGame.calculateTotal())
+
             }
             else {/* Do nothing, no strike or spare means no frame to update */}
         }
@@ -229,12 +289,21 @@ class gameViewController: UIViewController {
                 // If previous frame had a X and we're on ball 1, check for XX
                 if newGame.frames[7].isStrike && ball == 1 {
                     newGame.frames[7].frameTotal += score
+                    newGame.frames[7].doneUpdating = true
+                    frameScoreLabels[7].text = String(newGame.calculateTotal() - currentFrameTotal - newGame.frames[previousFrame].frameTotal)
                 }
                 newGame.frames[8].frameTotal += score
+                if ball == 2 {
+                    newGame.frames[8].doneUpdating = true
+                    frameScoreLabels[8].text = String(newGame.calculateTotal() - currentFrameTotal)
+                }
             }
             else if newGame.frames[previousFrame].isSpare && ball == 1 {
                 // If there was no X and we're on the first ball, check for /
                 newGame.frames[previousFrame].frameTotal += score
+                newGame.frames[previousFrame].doneUpdating = true
+                frameScoreLabels[previousFrame].text = String(newGame.calculateTotal())
+
             }
             else {/* Do nothing, no strike or spare means no frame to update */}
         }
@@ -438,6 +507,13 @@ class gameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        frameScoreLabels = [f1Score, f2Score,
+                            f3Score, f4Score,
+                            f5Score, f6Score,
+                            f7Score, f8Score,
+                            f9Score, f10Score]
+        
         
         // Puts our score labels into an array so as the game goes on
         // we can keep track of what label to update
