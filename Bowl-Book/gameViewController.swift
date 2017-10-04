@@ -74,6 +74,7 @@ class gameViewController: UIViewController {
         currentBall = 1
         scoreLabel.text = "0"
         sum = 0
+        lastButtonPress = nil
         
         buttonsEnabled(startIndex: -1, enabled: true)
         buttonsHidden(hidden: false)
@@ -137,14 +138,14 @@ class gameViewController: UIViewController {
     }
 
     @IBAction func strikeButtonTapped(_ sender: UIButton) {
-        if currentBall == 1 {
-            addRollToGame(score: 10, ball: currentBall)
-        }
-        else if currentBall == 2{
+        if currentBall == 2 && newGame.currentFrame != 9 {
             addRollToGame(score: 10 - newGame.frames[newGame.currentFrame].ballOne, ball: currentBall)
         }
-        else if currentBall == 2{
+        else if currentBall == 2 && newGame.currentFrame != 9 {
             addRollToGame(score: 10 - newGame.frames[newGame.currentFrame].ballTwo!, ball: currentBall)
+        }
+        else {
+            addRollToGame(score: 10, ball: currentBall)
         }
     }
     
@@ -347,6 +348,12 @@ class gameViewController: UIViewController {
         
         for i in begin...11 {
             buttons[i].isEnabled = enabled
+            
+            if enabled {
+                buttons[i].layer.borderColor = UIColor(red: 0.0/255.0, green: 122.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+            } else {
+                buttons[i].layer.borderColor = UIColor(red: 184.0/255.0, green: 184.0/255.0, blue: 184.0/255.0, alpha: 1.0).cgColor
+            }
         }
     }
     
@@ -504,6 +511,16 @@ class gameViewController: UIViewController {
     func gameOver() {
         buttonsHidden(hidden: true)
     }
+    
+    func initializeButtons() {
+        for i in 0...buttons.count - 1 {
+            buttons[i].layer.cornerRadius = buttons[i].frame.size.width/2.0
+            buttons[i].layer.borderWidth = 1
+            buttons[i].layer.borderColor = UIColor(red: 0.0/255.0, green: 122.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+        }
+        
+        buttonsEnabled(startIndex: -1, enabled: false)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -537,7 +554,6 @@ class gameViewController: UIViewController {
         
         // Sets all buttons to initially be disabled. Clicking the start
         // button will enable the buttons.
-        buttonsEnabled(startIndex: -1, enabled: false)
-
+        initializeButtons()
     }
 }
